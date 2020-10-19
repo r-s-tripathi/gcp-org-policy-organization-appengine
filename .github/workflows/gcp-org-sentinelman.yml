@@ -5,9 +5,10 @@ env:
 
 on:
   push:
-    branches: ${{env.org-name}}-dev
+    branches: ${{env.org-name}}-main
+    
   pull_request:
-    branches: ${{env.org-name}}-dev
+    branches: ${{env.org-name}}-main
 
 jobs:
   build:
