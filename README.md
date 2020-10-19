@@ -21,8 +21,7 @@ booleanPolicy:
 
 ```yaml
 constraint: constraints/compute.requireOsLogin
-booleanPolicy:
-  enforced: false
+booleanPolicy: {}
 ```
 
 #### To set a Boolean Constraint to "Inherited" inheritance type
