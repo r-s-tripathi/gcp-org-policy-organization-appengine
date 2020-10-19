@@ -6,6 +6,7 @@ env:
 on:
   push:
     branches: ${{env.org-name}}-main
+    
   pull_request:
     branches: ${{env.org-name}}-main
 
@@ -14,7 +15,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: GCloud CLI - set org policy
+      - name: Setup
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: '313.0.0'
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+        
+      - name: Deploy
         run: gcloud resource-manager org-policies set-policy --organization=${{ secrets.org-id-sentinelman }} ./set-${{env.org-name}}-org-policy.yaml
