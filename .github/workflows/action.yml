@@ -29,5 +29,5 @@ jobs:
         
       - name: Deploy
         id: deploy
-        run: gcloud resource-manager org-policies set-policy --organization=${{ secrets.ORG_ID }} ./set-${{env.ORG-NAME}}-org-policy.yaml
+        run: gcloud resource-manager org-policies set-policy --organization=${{ secrets.ORG_ID }} ./set-org-policy.yml
     
