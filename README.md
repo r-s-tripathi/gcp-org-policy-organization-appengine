@@ -1,12 +1,13 @@
 # gcp-org-policy-organization-appengine
 
-
-####Boolean Options:
-1. Inherited (Project to Folder and Org; or Folder to Org)
+##Boolean options:
+1. Inherited
+(Project from Folder and Organization)
+(Folder from Organization)
 2. Enabled
 3. Disabled
 
-###Examples:
+##Examples:
 
 ##Boolean Enabled
 
