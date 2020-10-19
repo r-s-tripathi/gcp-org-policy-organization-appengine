@@ -1,10 +1,13 @@
 name: AppEngine Org Policy - Organization Level
 
+env:
+  org-name: sentinelman
+
 on:
   push:
-    branches: sentinelman-main
+    branches: ${{env.org-name}}
   pull_request:
-    branches: sentinelman-main
+    branches: ${{env.org-name}}
 
 jobs:
   build:
@@ -13,5 +16,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: GCLoud CLI Set Org Policy
-        run: gcloud resource-manager org-policies set-policy --organization=${{ secrets.ORG_ID }} set-organization-policy.yaml
+      - name: GCLoud CLI - set org policy
+        run: gcloud resource-manager org-policies set-policy --organization=${{ secrets.org-id-sentinelman }} set-${{env.org-name}}-org-policy.yaml
