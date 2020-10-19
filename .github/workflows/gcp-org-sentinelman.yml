@@ -6,13 +6,13 @@ env:
 on:
   push:
     branches:
-    - ${{env.org-name}}-main
-    - ${{env.org-name}}-dev
+      - ${{env.org-name}}-main
+      - ${{env.org-name}}-dev
     
   pull_request:
     branches:
-    - ${{env.org-name}}-main
-    - ${{env.org-name}}-dev
+      - ${{env.org-name}}-main
+      - ${{env.org-name}}-dev
 
 jobs:
   build:
