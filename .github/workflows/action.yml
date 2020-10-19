@@ -1,8 +1,5 @@
 name: AppEngine Org Policy - Organization Level
 
-env:
-  ORG-NAME: sentinelman
-
 on:
   push:
     branches:
