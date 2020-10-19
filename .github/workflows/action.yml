@@ -1,0 +1,33 @@
+name: AppEngine Org Policy - Organization Level
+
+env:
+  ORG-NAME: sentinelman
+
+on:
+  push:
+    branches:
+      - main
+    
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: '313.0.0'
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+          export_default_credentials: true
+        
+      - name: Deploy
+        id: deploy
+        run: gcloud resource-manager org-policies set-policy --organization=${{ secrets.ORG_ID }} ./set-${{env.ORG-NAME}}-org-policy.yaml
+    
