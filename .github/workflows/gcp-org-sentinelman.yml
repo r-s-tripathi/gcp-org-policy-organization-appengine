@@ -25,4 +25,27 @@ jobs:
           service_account_key: ${{ secrets.GCP_CREDENTIALS }}
         
       - name: Deploy
+        id: deploy
         run: gcloud resource-manager org-policies set-policy --organization=${{ secrets.org-id-sentinelman }} ./set-${{env.org-name}}-org-policy.yaml
+      
+      - uses: actions/github-script@0.9.0
+        if: github.event_name == 'pull_request'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            #### Deploy Initialization ⚙️\`${{ steps.deploy.outcome }}\`
+            <details><summary>Show Deploy</summary>
+            < /details>
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
+        
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+
+      - name: status
+        if: steps.deploy.outcome == 'failure'
+        run: exit 1
+      
