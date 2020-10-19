@@ -1,3 +1,0 @@
-constraint: constraints/appengine.disableCodeDownload
-booleanPolicy:
-  enforced: false
