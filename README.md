@@ -10,21 +10,26 @@
 ### Examples:
 
 #### Boolean Enabled
+
 ```yaml
 constraint: constraints/compute.requireOsLogin
 booleanPolicy:
   enforced: true
-```yaml
+```
+
 #### Boolean Disabled
+
 ```yaml
 constraint: constraints/compute.requireOsLogin
 booleanPolicy:
   enforced: false
-```yaml
+```
+
 ### To set a Boolean Constraint to "Inherited" inheritance type
+
 ```bash
 gcloud resource-manager org-policies delete cloudfunctions.allowedIngressSettings --organization <project-id>
-```bash
+```
 
 ## List options: 
 1. Inherited
