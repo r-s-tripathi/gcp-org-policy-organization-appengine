@@ -14,4 +14,4 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: GCLoud CLI Set Org Policy
-        run: gcloud resource-manager org-policies set-policy --organization=${{ secrets.ORG_ID }} set-policy-organization.yaml
+        run: gcloud resource-manager org-policies set-policy --organization=${{ secrets.ORG_ID }} set-organization-policy.yaml
