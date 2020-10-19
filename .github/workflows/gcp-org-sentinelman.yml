@@ -5,10 +5,14 @@ env:
 
 on:
   push:
-    branches: ${{env.org-name}}-main
+    branches:
+      ${{env.org-name}}-main
+      ${{env.org-name}}-dev
     
   pull_request:
-    branches: ${{env.org-name}}-main
+    branches:
+      ${{env.org-name}}-main
+      ${{env.org-name}}-dev
 
 jobs:
   build:
@@ -26,7 +30,7 @@ jobs:
         
       - name: Deploy
         id: deploy
-        run: gcloud resource-manager org-policies set-policy --organization=${{ secrets.org-id-sentinelman }} ./set-${{env.org-name}}-org-policy.yaml
+        run: gcloud resource-manager org-policies set-policy --organization=${{ secrets.org_id_sentinelman }} ./set-${{env.org-name}}-org-policy.yaml
       
       - uses: actions/github-script@0.9.0
         if: github.event_name == 'pull_request'
@@ -48,4 +52,4 @@ jobs:
       - name: status
         if: steps.deploy.outcome == 'failure'
         run: exit 1
-      
+        
